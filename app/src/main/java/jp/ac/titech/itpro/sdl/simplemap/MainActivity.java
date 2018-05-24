@@ -10,6 +10,7 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.common.ConnectionResult;
@@ -29,6 +30,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private final static String TAG = "MainActivity";
 
+    private TextView infoView;
     private GoogleMap googleMap;
     private GoogleApiClient googleApiClient;
     private FusedLocationProviderClient fusedLocationProviderClient;
@@ -50,6 +52,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.d(TAG, "onCreate");
         setContentView(R.layout.activity_main);
 
+        infoView = findViewById(R.id.info_view);
         MapFragment mapFragment =
                 (MapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this);
@@ -74,6 +77,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 if (locationResult != null) {
                     Location location = locationResult.getLastLocation();
                     LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
+                    infoView.setText(getString(R.string.latlng_format,
+                            latLng.latitude, latLng.longitude));
                     googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
                 }
             }
