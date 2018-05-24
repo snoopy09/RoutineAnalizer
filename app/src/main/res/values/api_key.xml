@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--
+    TODO: Obtain your own Google Map API key to run this application
+
+    1. Follow the document below to obtain your API key
+        https://developers.google.com/maps/documentation/android-api/signup
+
+    2. Replace the "Your Google Maps API Key" string in this file with your API key.
+    -->
+    <string name="google_maps_api_key">Your Google Maps API Key</string>
+</resources>
