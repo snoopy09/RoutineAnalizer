@@ -8,5 +8,5 @@
 
     2. Replace the "Your Google Maps API Key" string in this file with your API key.
     -->
-    <string name="google_maps_api_key">Your Google Maps API Key</string>
+    <string name="google_maps_api_key">AIzaSyBe79r8-QTNG3W1BQo19T1fZW1nx08dzY8</string>
 </resources>

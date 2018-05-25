@@ -10,6 +10,8 @@ import android.support.v4.content.ContextCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -36,6 +38,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private FusedLocationProviderClient fusedLocationProviderClient;
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
+//    private Button replaceButton;
 
     private enum UpdatingState {STOPPED, REQUESTING, STARTED}
 
@@ -67,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
 
         locationRequest = new LocationRequest();
-        locationRequest.setInterval(10000L);
+//        locationRequest.setInterval(10000L);
         locationRequest.setFastestInterval(5000L);
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
@@ -85,6 +88,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                 }
             }
         };
+
+//        replaceButton = findViewById(R.id.replace_button);
     }
 
     @Override
@@ -166,9 +171,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                                            @NonNull String[] permissions, @NonNull int[] grants) {
         Log.d(TAG, "onRequestPermissionsResult");
         switch (reqCode) {
-        case REQCODE_PERMISSIONS:
-            startLocationUpdate(false);
-            break;
+            case REQCODE_PERMISSIONS:
+                startLocationUpdate(false);
+                break;
         }
     }
 
@@ -176,5 +181,12 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         Log.d(TAG, "stopLocationUpdate");
         fusedLocationProviderClient.removeLocationUpdates(locationCallback);
         state = UpdatingState.STOPPED;
+    }
+
+    public void onClickReplaceButton(View v) {
+        Log.d(TAG, "onClickReplaceButton");
+        Log.d(TAG, String.valueOf(state));
+        if (googleApiClient.isConnected())
+            startLocationUpdate(true);
     }
 }
