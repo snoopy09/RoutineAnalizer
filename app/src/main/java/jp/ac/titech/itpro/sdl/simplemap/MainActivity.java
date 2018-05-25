@@ -37,7 +37,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
 
-    private enum UpdatingState { STOPPED, REQUESTING, STARTED }
+    private enum UpdatingState {STOPPED, REQUESTING, STARTED}
+
     private UpdatingState state = UpdatingState.STOPPED;
 
     private final static String[] PERMISSIONS = {
@@ -79,7 +80,8 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                     LatLng latLng = new LatLng(location.getLatitude(), location.getLongitude());
                     infoView.setText(getString(R.string.latlng_format,
                             latLng.latitude, latLng.longitude));
-                    googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
+                    if (googleMap != null)
+                        googleMap.animateCamera(CameraUpdateFactory.newLatLng(latLng));
                 }
             }
         };
