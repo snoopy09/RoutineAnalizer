@@ -28,6 +28,24 @@ import com.google.android.gms.maps.MapFragment;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.model.LatLng;
 
+import android.graphics.Color;
+import android.graphics.DashPathEffect;
+import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
+
+import com.github.mikephil.charting.charts.PieChart;
+import com.github.mikephil.charting.components.Legend;
+import com.github.mikephil.charting.data.PieEntry;
+import com.github.mikephil.charting.data.PieData;
+import com.github.mikephil.charting.data.PieDataSet;
+import com.github.mikephil.charting.formatter.PercentFormatter;
+import com.github.mikephil.charting.utils.ColorTemplate;
+
+import java.util.List;
+import java.util.Arrays;
+import java.util.ArrayList;
+
+
 public class MainActivity extends AppCompatActivity implements OnMapReadyCallback,
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener {
     private final static String TAG = "MainActivity";
@@ -39,6 +57,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     private LocationRequest locationRequest;
     private LocationCallback locationCallback;
 //    private Button replaceButton;
+    private PieChart mPieChart;
 
     private enum UpdatingState {STOPPED, REQUESTING, STARTED}
 
@@ -57,9 +76,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         setContentView(R.layout.activity_main);
 
         infoView = findViewById(R.id.info_view);
-        MapFragment mapFragment =
-                (MapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
-        mapFragment.getMapAsync(this);
+//        MapFragment mapFragment =
+//                (MapFragment) getFragmentManager().findFragmentById(R.id.map_fragment);
+//        mapFragment.getMapAsync(this);
 
         googleApiClient = new GoogleApiClient.Builder(this)
                 .addConnectionCallbacks(this)
@@ -90,7 +109,9 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
         };
 
 //        replaceButton = findViewById(R.id.replace_button);
-    }
+        mPieChart = (PieChart) findViewById(R.id.pie_chart);
+        setupPieChartView();
+     }
 
     @Override
     protected void onStart() {
@@ -184,9 +205,96 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
     }
 
     public void onClickReplaceButton(View v) {
+        setupPieChartView();
+
         Log.d(TAG, "onClickReplaceButton");
-        Log.d(TAG, String.valueOf(state));
-        if (googleApiClient.isConnected())
-            startLocationUpdate(true);
+//        Log.d(TAG, String.valueOf(state));
+//        if (googleApiClient.isConnected())
+//            startLocationUpdate(true);
     }
+
+    private void setupPieChartView() {
+        mPieChart.setUsePercentValues(true);
+//        mPieChart.setDescription("チャートの説明");
+
+        Legend legend = mPieChart.getLegend();
+        legend.setPosition(Legend.LegendPosition.BELOW_CHART_LEFT);
+
+        // 円グラフに表示するデータ
+        List<Float> values = Arrays.asList(40f, 30f, 20f, 10f);
+        List<String> labels = Arrays.asList("A", "B", "C", "D");
+        List<PieEntry> entries = new ArrayList<>();
+        for (int i = 0; i < 4; i++) {
+            entries.add(new PieEntry(values.get(i), labels.get(i)));
+        }
+
+        PieDataSet dataSet = new PieDataSet(entries, "昨日");
+        dataSet.setColors(ColorTemplate.COLORFUL_COLORS);
+        dataSet.setDrawValues(true);
+
+        PieData pieData = new PieData(dataSet);
+        pieData.setValueFormatter(new PercentFormatter());
+        pieData.setValueTextSize(12f);
+        pieData.setValueTextColor(Color.WHITE);
+
+        mPieChart.setData(pieData);
+    }
+
+//    private void createPieChart() {
+//        PieChart pieChart = (PieChart) findViewById(R.id.pie_chart);
+//
+//        pieChart.setDrawHoleEnabled(true); // 真ん中に穴を空けるかどうか
+//        pieChart.setHoleRadius(50f);       // 真ん中の穴の大きさ(%指定)
+////        pieChart.setHoleColorTransparent(true);
+//        pieChart.setTransparentCircleRadius(55f);
+//        pieChart.setRotationAngle(270);          // 開始位置の調整
+//        pieChart.setRotationEnabled(true);       // 回転可能かどうか
+//        pieChart.getLegend().setEnabled(true);   //
+////        pieChart.setDescription("PieChart 説明");
+//        pieChart.setData(createPieChartData());
+//
+////        // 更新
+////        pieChart.invalidate();
+////        // アニメーション
+////        pieChart.animateXY(2000, 2000); // 表示アニメーション
+//    }
+//
+//    // pieChartのデータ設定
+//    private PieData createPieChartData() {
+//        ArrayList<Entry> yVals = new ArrayList<>();
+//        ArrayList<String> xVals = new ArrayList<>();
+//        ArrayList<Integer> colors = new ArrayList<>();
+//
+//        xVals.add("A");
+//        xVals.add("B");
+//        xVals.add("C");
+//
+//        yVals.add(new Entry(20, 0));
+//        yVals.add(new Entry(30, 1));
+//        yVals.add(new Entry(50, 2));
+//
+//        PieDataSet dataSet = new PieDataSet((List)yVals, "Data");
+//        dataSet.setSliceSpace(5f);
+//        dataSet.setSelectionShift(1f);
+//
+//        // 色の設定
+////        colors.add(ColorTemplate.COLORFUL_COLORS[0]);
+////        colors.add(ColorTemplate.COLORFUL_COLORS[1]);
+////        colors.add(ColorTemplate.COLORFUL_COLORS[2]);
+//        colors.add(-2535286);
+//        colors.add(-92921);
+//        colors.add(-67720);
+////        colors.add(-9787514);
+////        colors.add(-13253935);
+//        dataSet.setColors(colors);
+//        dataSet.setDrawValues(true);
+//
+//        PieData data = new PieData(dataSet);
+////        data.setValueFormatter(new PercentFormatter());
+//
+//        // テキストの設定
+//        data.setValueTextSize(12f);
+//        data.setValueTextColor(Color.WHITE);
+//        return data;
+//    }
 }
