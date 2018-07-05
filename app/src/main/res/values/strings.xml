@@ -3,4 +3,7 @@
     <string name="toast_requires_permission_format">Requires permission %s</string>
     <string name="info_view_default">SimpleMap</string>
     <string name="latlng_format">latitude = %f, longitude = %f</string>
+    <string name="start">Start</string>
+    <string name="log">Log</string>
+    <string name="reset">Reset</string>
 </resources>
