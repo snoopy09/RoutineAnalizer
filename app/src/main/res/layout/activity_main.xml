@@ -1,115 +1,69 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:background="#cdf"
     tools:context=".MainActivity">
 
+
     <LinearLayout
-        android:gravity="center"
-        android:background="#48f"
-        android:orientation="horizontal"
-        android:layout_margin="20dp"
+        android:id="@+id/target"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
-
-        <Button
-            android:id="@+id/button_start"
-            android:text="@string/start"
-            android:textSize="18sp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/button_log"
-            android:text="@string/log"
-            android:textSize="18sp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
-
-        <Button
-            android:id="@+id/button_reset"
-            android:text="@string/reset"
-            android:textSize="18sp"
-            android:layout_margin="5dp"
-            android:layout_weight="1"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content" />
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent">
 
     </LinearLayout>
 
-    <ScrollView
-        android:layout_margin="20dp"
+    <TextView
+        android:id="@+id/info_view"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:text="@string/info_view_default"
+        android:textSize="@dimen/info_view_font_size"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            android:id="@+id/log_text"
-            android:textColor="#000"
+    <LinearLayout
+        android:id="@+id/action_buttons"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_weight="1"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/map_fragment"
+        app:layout_constraintVertical_bias="1.0">
+
+        <!--<Button-->
+            <!--android:id="@+id/button_start"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_weight="1"-->
+            <!--android:text="start" />-->
+
+        <Button
+            android:id="@+id/button_stop"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content" />
-    </ScrollView>
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="計測停止" />
 
-</LinearLayout>
-<!--<?xml version="1.0" encoding="utf-8"?>-->
-<!--<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"-->
-    <!--xmlns:app="http://schemas.android.com/apk/res-auto"-->
-    <!--xmlns:tools="http://schemas.android.com/tools"-->
-    <!--android:layout_width="match_parent"-->
-    <!--android:layout_height="match_parent"-->
-    <!--tools:context=".MainActivity">-->
+        <Button
+            android:id="@+id/button_clear"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="履歴削除" />
 
-    <!--<TextView-->
-        <!--android:id="@+id/info_view"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:text="@string/info_view_default"-->
-        <!--android:textSize="@dimen/info_view_font_size"-->
-        <!--app:layout_constraintEnd_toEndOf="parent"-->
-        <!--app:layout_constraintStart_toStartOf="parent"-->
-        <!--app:layout_constraintTop_toTopOf="parent" />-->
+        <Button
+            android:id="@+id/button_register"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="場所登録" />
+    </LinearLayout>
 
-    <!--&lt;!&ndash;<fragment&ndash;&gt;-->
-        <!--&lt;!&ndash;android:id="@+id/map_fragment"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:name="com.google.android.gms.maps.MapFragment"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_width="0dp"&ndash;&gt;-->
-        <!--&lt;!&ndash;android:layout_height="0dp"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintBottom_toBottomOf="parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintEnd_toEndOf="parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintHorizontal_bias="0.0"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintStart_toStartOf="parent"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintTop_toBottomOf="@id/info_view"&ndash;&gt;-->
-        <!--&lt;!&ndash;app:layout_constraintVertical_bias="0.0" />&ndash;&gt;-->
-
-    <!--<LinearLayout-->
-        <!--xmlns:android="http://schemas.android.com/apk/res/android"-->
-        <!--android:layout_width="match_parent"-->
-        <!--android:layout_height="match_parent"-->
-        <!--android:orientation="vertical">-->
-
-        <!--<com.github.mikephil.charting.charts.PieChart-->
-            <!--android:id="@+id/pie_chart"-->
-            <!--android:layout_width="match_parent"-->
-            <!--android:layout_height="match_parent"-->
-            <!--android:layout_margin="16dp" />-->
-    <!--</LinearLayout>-->
-
-    <!--<Button-->
-        <!--android:id="@+id/replace_button"-->
-        <!--style="@android:style/Widget.DeviceDefault.Light.Button"-->
-        <!--android:layout_width="0dp"-->
-        <!--android:layout_height="wrap_content"-->
-        <!--android:onClick="onClickReplaceButton"-->
-        <!--android:text="現在地を表示"-->
-        <!--app:layout_constraintBottom_toBottomOf="parent"-->
-        <!--app:layout_constraintTop_toBottomOf="@+id/map_fragment"-->
-        <!--app:layout_constraintVertical_bias="1.0"-->
-        <!--tools:layout_editor_absoluteX="138dp" />-->
-
-<!--</android.support.constraint.ConstraintLayout>-->
+</android.support.constraint.ConstraintLayout>

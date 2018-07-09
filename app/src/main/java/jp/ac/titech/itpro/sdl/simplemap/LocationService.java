@@ -35,6 +35,7 @@ public class LocationService extends Service implements LocationListener{
 
     @Override
     public void onCreate() {
+        Log.d("debug", "onCreate");
         super.onCreate();
 
         context = getApplicationContext();
@@ -48,6 +49,7 @@ public class LocationService extends Service implements LocationListener{
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
+        Log.d("debug", "onStartCommand");
 
         int requestCode = 0;
         String channelId = "default";
@@ -87,8 +89,8 @@ public class LocationService extends Service implements LocationListener{
                     .setWhen(System.currentTimeMillis())
                     .build();
 
-            // startForeground
-            startForeground(1, notification);
+//            // startForeground
+//            startForeground(1, notification);
         }
 
         startGPS();
@@ -167,7 +169,7 @@ public class LocationService extends Service implements LocationListener{
 
         Log.d("debug", strBuf.toString());
 
-        fileReadWrite.writeFile(strBuf.toString());
+//        fileReadWrite.writeFile(strBuf.toString());
     }
 
     @Override
@@ -194,7 +196,7 @@ public class LocationService extends Service implements LocationListener{
                 break;
         }
 
-        fileReadWrite.writeFile(strBuf.toString());
+//        fileReadWrite.writeFile(strBuf.toString());
 
     }
 
