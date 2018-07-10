@@ -25,7 +25,7 @@ class InternalFileReadWrite {
         Log.d("debug","clearFile");
         // ファイル削除
         context.deleteFile(LOGFILE_NAME);
-        context.deleteFile(MEMFILE_NAME);
+//        context.deleteFile(MEMFILE_NAME);
         // StringBuffer clear
 //        stringBuffer.setLength(0);
     }

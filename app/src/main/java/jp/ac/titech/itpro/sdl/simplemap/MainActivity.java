@@ -246,7 +246,7 @@ public class MainActivity extends AppCompatActivity implements OnMapReadyCallbac
                          placeMap = new HashMap<>();
                          unknown = new HashMap<>();
                          counter = new int[4];
-                         setupPieChartView();
+                         if(!buttonRegister.isEnabled()) setupPieChartView();
 
                     }
                 })

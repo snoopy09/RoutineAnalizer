@@ -65,7 +65,7 @@ public class MyLocationService extends Service implements GoogleApiClient.Connec
         fusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
         // to do something
         locationRequest = new LocationRequest();
-        locationRequest.setInterval(5 * 60 * 1000L);
+        locationRequest.setInterval(1 * 60 * 1000L);
         locationRequest.setFastestInterval(0L);
         locationRequest.setPriority(LocationRequest.PRIORITY_BALANCED_POWER_ACCURACY);
 
